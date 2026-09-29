@@ -1,24 +1,11 @@
-# Wazuh SIEM Lab — Incident Detection Project
+# Wazuh SIEM Lab
 
-Personal security-monitoring lab built to gain hands-on SIEM experience for cybersecurity/GRC roles.
+Personal security-monitoring lab built to get hands-on SIEM experience for cybersecurity/GRC roles.
 
-## What I Built
-- Deployed a Wazuh SIEM (manager + dashboard) on one virtual machine
-- Connected a second VM as a monitored endpoint running the Wazuh agent
-- Simulated an SSH brute-force attack against the endpoint (manual attempts + a scripted rapid-fire attempt loop)
-- Investigated the resulting alerts in the Wazuh dashboard, analyzing rule severity, source IPs, and MITRE ATT&CK mappings
-- Documented findings and remediation recommendations in a formal incident report
+## What's in this repo
+- [`incident-report.md`](incident-report.md) — full writeup of the simulated attack and what Wazuh detected
+- [`scripts/attack-simulation.sh`](scripts/attack-simulation.sh) — the bash script used to simulate a brute-force SSH attack
+- [`docs/wazuh-agent-setup.md`](docs/wazuh-agent-setup.md) — steps used to install and connect the Wazuh agent
 
-## Tools Used
-- Wazuh SIEM (v4.14.7)
-- Ubuntu Server 26.04 LTS
-- UTM (virtualization)
-- SSH / bash scripting
-
-## Results
-- 85 authentication-failure alerts generated and correctly classified
-- Wazuh automatically escalated alert severity (level 5 → 10) upon detecting repeated failed logins from the same source
-- Mapped activity to MITRE ATT&CK techniques: Brute Force (T1110), Password Guessing (T1110.001), Valid Accounts (T1078)
-
-## Full Report
-See `Wazuh_SIEM_Incident_Report.pdf` in this repo for the complete write-up, including log evidence and remediation recommendations.
+## Summary
+Deployed Wazuh SIEM across two VMs (manager + monitored endpoint), simulated an SSH brute-force attack, and analyzed the resulting alerts. Wazuh detected 85 authentication-failure events, auto-escalated severity as it correlated repeated failures, and mapped the activity to MITRE ATT&CK techniques (Brute Force, Password Guessing, Valid Accounts).
